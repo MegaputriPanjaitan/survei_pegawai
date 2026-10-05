@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0757a6">
+  <meta name="description" content="Aplikasi survei kinerja pegawai BHP Medan untuk pejabat dan admin.">
+  <title>Survei Pegawai · BHP Medan</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="BHP Medan - Beranda">
+        <img src="logo-bhp.svg" alt="BHP Medan" width="188" height="58">
+      </a>
+      <div class="role-card">
+        <div class="avatar">AS</div>
+        <div><strong>Ahmad Syahrial</strong><span id="roleLabel">Pejabat Penilai</span></div>
+        <button class="icon-btn" id="roleSwitch" aria-label="Ganti mode tampilan" title="Ganti mode">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 7l4 4M4 7h11a5 5 0 0 1 5 5v1M16 21l4-4-4-4m4 4H9a5 5 0 0 1-5-5v-1"/></svg>
+        </button>
+      </div>
+      <nav class="nav-list" aria-label="Navigasi utama">
+        <button class="nav-item active" data-view="survey">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span>Survei Pegawai</span><span class="nav-badge">12</span>
+        </button>
+        <button class="nav-item" data-view="history">
+          <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5M12 7v5l3 2"/></svg>
+          <span>Riwayat Saya</span>
+        </button>
+        <div class="nav-separator"><span>Khusus admin</span></div>
+        <button class="nav-item admin-only" data-view="dashboard">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item admin-only" data-view="results">
+          <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg>
+          <span>Hasil Penilaian</span>
+        </button>
+        <button class="nav-item admin-only" data-view="admin-history">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Riwayat Penilai</span>
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="period-mini"><span>Periode aktif</span><strong>Semester II · 2026</strong></div>
+        <button class="help-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 4h.01"/></svg>Panduan singkat</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Buka menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+        <div class="breadcrumb"><span>Aplikasi Internal</span><i></i><strong id="pageCrumb">Survei Pegawai</strong></div>
+        <div class="top-actions">
+          <button class="period-button"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>Semester II · 2026</span></button>
+          <button class="notification" aria-label="Notifikasi"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><i></i></button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="view active" id="surveyView">
+          <div class="page-heading">
+            <div><span class="eyebrow">SURVEI KINERJA PEGAWAI</span><h1>Pilih pegawai untuk dinilai</h1><p>Penilaian Anda bersifat rahasia dan hanya dapat dilihat oleh admin.</p></div>
+            <div class="progress-box"><div class="progress-copy"><strong id="progressText">4 dari 16 selesai</strong><span>Progress penilaian</span></div><div class="progress-ring" style="--progress:25"><span>25%</span></div></div>
+          </div>
+          <div class="toolbar">
+            <label class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="employeeSearch" type="search" placeholder="Cari nama atau jabatan pegawai..."></label>
+            <label class="select-wrap"><span class="sr-only">Filter unit kerja</span><select id="unitFilter"><option value="all">Semua unit kerja</option><option value="Tata Usaha">Tata Usaha</option><option value="Kurator Keperdataan">Kurator Keperdataan</option><option value="Perwalian & Pengampuan">Perwalian & Pengampuan</option></select><svg viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg></label>
+          </div>
+          <div class="employee-grid" id="employeeGrid"></div>
+        </div>
+
+        <div class="view" id="historyView">
+          <div class="page-heading compact"><div><span class="eyebrow">AKTIVITAS SAYA</span><h1>Riwayat penilaian</h1><p>Daftar penilaian yang sudah Anda kirim pada periode berjalan.</p></div></div>
+          <div class="panel"><div class="table-wrap"><table><thead><tr><th>Pegawai</th><th>Unit kerja</th><th>Tanggal</th><th>Skor</th><th>Status</th></tr></thead><tbody id="myHistoryBody"></tbody></table></div></div>
+        </div>
+
+        <div class="view" id="dashboardView">
+          <div class="page-heading compact admin-heading"><div><span class="eyebrow">RINGKASAN ADMIN</span><h1>Selamat datang, Ahmad</h1><p>Pantau progres dan hasil penilaian seluruh pegawai BHP Medan.</p></div><button class="primary-btn" data-view-link="results"><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg>Lihat hasil lengkap</button></div>
+          <div class="stat-grid">
+            <article class="stat-card blue"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.87"/></svg></div><div><span>Total pegawai</span><strong>16</strong><small>3 unit kerja</small></div></article>
+            <article class="stat-card yellow"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><span>Penilaian masuk</span><strong id="submissionCount">64</strong><small><b>+12</b> minggu ini</small></div></article>
+            <article class="stat-card green"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-10M14 5h7v7"/></svg></div><div><span>Rata-rata skor</span><strong id="averageScore">87,4</strong><small><b>Baik</b> dari 100</small></div></article>
+            <article class="stat-card purple"><div class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><span>Partisipasi pejabat</span><strong>8/10</strong><small>2 belum mengisi</small></div></article>
+          </div>
+          <div class="dashboard-grid">
+            <section class="panel chart-panel"><div class="panel-head"><div><h2>Tren penilaian masuk</h2><p>Jumlah penilaian per bulan</p></div><span class="legend"><i></i>Penilaian</span></div><div class="chart" aria-label="Grafik penilaian Juli sampai Desember"><div class="y-labels"><span>20</span><span>15</span><span>10</span><span>5</span><span>0</span></div><div class="bars"><div><i style="--h:42%"></i><span>Jul</span></div><div><i style="--h:54%"></i><span>Agu</span></div><div><i style="--h:48%"></i><span>Sep</span></div><div><i style="--h:73%"></i><span>Okt</span></div><div><i style="--h:86%"></i><span>Nov</span></div><div><i style="--h:64%"></i><span>Des</span></div></div></div></section>
+            <section class="panel unit-panel"><div class="panel-head"><div><h2>Rata-rata per unit</h2><p>Semester II · 2026</p></div></div><div class="unit-scores"><div><div><span>Tata Usaha</span><strong>89,2</strong></div><progress max="100" value="89.2"></progress></div><div><div><span>Kurator Keperdataan</span><strong>87,8</strong></div><progress max="100" value="87.8"></progress></div><div><div><span>Perwalian & Pengampuan</span><strong>84,6</strong></div><progress max="100" value="84.6"></progress></div></div><div class="score-note"><svg viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-10M14 5h7v7"/></svg><span><strong>Tata Usaha</strong> memiliki rata-rata tertinggi periode ini.</span></div></section>
+          </div>
+          <section class="panel recent-panel"><div class="panel-head"><div><h2>Penilaian terbaru</h2><p>Aktivitas yang baru masuk</p></div><button class="text-btn" data-view-link="admin-history">Lihat semua</button></div><div class="activity-list" id="activityList"></div></section>
+        </div>
+
+        <div class="view" id="resultsView">
+          <div class="page-heading compact"><div><span class="eyebrow">HASIL KESELURUHAN</span><h1>Hasil penilaian pegawai</h1><p>Perbandingan skor seluruh pegawai dari semua penilai.</p></div><button class="outline-btn" id="exportBtn"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>Ekspor ringkasan</button></div>
+          <div class="toolbar result-toolbar"><label class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="resultSearch" type="search" placeholder="Cari pegawai..."></label><div class="score-legend"><span><i class="great"></i>≥ 90 Sangat baik</span><span><i class="good"></i>80–89 Baik</span><span><i class="fair"></i>&lt; 80 Perlu perhatian</span></div></div>
+          <div class="panel"><div class="table-wrap"><table><thead><tr><th>Peringkat</th><th>Pegawai</th><th>Unit kerja</th><th>Jumlah penilai</th><th>Rata-rata</th><th>Kategori</th></tr></thead><tbody id="resultsBody"></tbody></table></div></div>
+        </div>
+
+        <div class="view" id="adminHistoryView">
+          <div class="page-heading compact"><div><span class="eyebrow">AUDIT PENILAIAN</span><h1>Riwayat seluruh penilaian</h1><p>Lihat siapa yang sudah menilai, pegawai yang dinilai, dan waktu pengisian.</p></div></div>
+          <div class="toolbar"><label class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="adminHistorySearch" type="search" placeholder="Cari penilai atau pegawai..."></label><label class="select-wrap"><select><option>Semua penilai</option><option>Sudah lengkap</option><option>Belum lengkap</option></select><svg viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg></label></div>
+          <div class="panel"><div class="table-wrap"><table><thead><tr><th>Pejabat penilai</th><th>Pegawai dinilai</th><th>Tanggal & waktu</th><th>Skor</th><th>Status</th></tr></thead><tbody id="adminHistoryBody"></tbody></table></div></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="modal" id="surveyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <div class="modal-head"><span class="step-label">FORM PENILAIAN</span><h2 id="modalTitle">Nilai pegawai</h2><p>Berikan penilaian objektif berdasarkan kinerja pada periode ini.</p></div>
+      <div class="selected-employee" id="selectedEmployee"></div>
+      <form id="surveyForm">
+        <div class="rating-list" id="ratingList"></div>
+        <label class="comment-field"><span>Catatan tambahan <small>(opsional)</small></span><textarea id="comment" rows="3" maxlength="300" placeholder="Tuliskan catatan yang membangun..."></textarea><small><b id="charCount">0</b>/300</small></label>
+        <div class="modal-actions"><button type="button" class="outline-btn" id="cancelModal">Batal</button><button type="submit" class="primary-btn">Kirim penilaian</button></div>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Penilaian berhasil dikirim</strong><span>Data sudah masuk ke riwayat penilaian.</span></div></div>
+  <script src="app.js"></script>
+</body>
+</html>

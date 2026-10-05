@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 64" role="img" aria-labelledby="title desc">
+  <title id="title">Logo BHP Medan</title>
+  <desc id="desc">Lambang BHP biru dan kuning</desc>
+  <g transform="translate(2 2)">
+    <path d="M30 1 57 16v28L30 59 3 44V16L30 1Z" fill="#0757A6"/>
+    <path d="m30 8 20 11v22L30 52 10 41V19L30 8Z" fill="none" stroke="#F8C928" stroke-width="3"/>
+    <path d="M18 20h13c7 0 11 3 11 8 0 3-2 5-4 6 4 1 6 4 6 8 0 6-5 9-13 9H18V20Zm9 7v5h4c2 0 3-1 3-3 0-1-1-2-3-2h-4Zm0 12v5h5c2 0 3-1 3-3 0-1-1-2-3-2h-5Z" fill="#fff"/>
+  </g>
+  <text x="72" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#0757A6">BHP MEDAN</text>
+  <text x="73" y="48" font-family="Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="1.6" fill="#6B7280">BALAI HARTA PENINGGALAN</text>
+</svg>
